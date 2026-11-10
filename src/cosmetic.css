@@ -1,0 +1,25 @@
+html:not([data-ytab-cosmetic="off"]) :is(
+  #masthead-ad,
+  #player-ads,
+  ytd-ad-slot-renderer,
+  ytd-in-feed-ad-layout-renderer,
+  ytd-display-ad-renderer,
+  ytd-promoted-sparkles-web-renderer,
+  ytd-promoted-video-renderer,
+  ytd-banner-promo-renderer,
+  ytd-statement-banner-renderer,
+  ytd-companion-slot-renderer,
+  ytd-action-companion-ad-renderer,
+  ytd-player-legacy-desktop-watch-ads-renderer,
+  ytd-engagement-panel-section-list-renderer[target-id="engagement-panel-ads"],
+  ytd-rich-item-renderer:has(ytd-ad-slot-renderer),
+  ytd-rich-section-renderer:has(ytd-statement-banner-renderer),
+  .ytp-ad-overlay-container,
+  .ytp-ad-overlay-slot,
+  .ytp-ad-message-container,
+  ad-slot-renderer,
+  ytm-promoted-sparkles-web-renderer,
+  ytm-companion-ad-renderer
+) {
+  display: none !important;
+}

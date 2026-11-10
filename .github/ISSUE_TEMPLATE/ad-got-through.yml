@@ -1,0 +1,33 @@
+name: An ad got through
+description: You saw an ad on YouTube with the extension on.
+labels: ["ad got through"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Video or page link
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of ad?
+      options:
+        - Video ad before or during a video
+        - Banner or overlay on the player
+        - Ad in the home feed or search results
+        - Ad next to the video
+        - Anti-adblock warning
+        - Something else
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and extension version
+      placeholder: Chrome 142, yt-adblocker v0.1.0
+  - type: textarea
+    id: details
+    attributes:
+      label: Anything else?
+      description: Screenshots help a lot.

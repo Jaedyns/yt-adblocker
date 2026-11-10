@@ -1,0 +1,8 @@
+{
+  "name": "yt-adblocker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/validate.mjs && node --test"
+  }
+}
