@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YT AdBlocker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Open-source ad blocker for YouTube: blocks ad requests, strips ads from the player, and skips anything that slips through.",
   "permissions": ["storage", "declarativeNetRequest"],
   "host_permissions": ["*://*.youtube.com/*"],

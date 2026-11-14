@@ -7,7 +7,10 @@
   function strip(data) {
     if (!data || typeof data !== "object" || !enabled()) return data;
     let removed = 0;
-    for (const target of [data, data.playerResponse]) {
+    // Some page loads send an array of parts, one of which holds playerResponse.
+    const parts = Array.isArray(data) ? data : [data];
+    const targets = parts.flatMap((part) => [part, part?.playerResponse]);
+    for (const target of targets) {
       if (!target || typeof target !== "object") continue;
       for (const key of AD_KEYS) {
         if (key in target) {

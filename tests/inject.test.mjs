@@ -41,6 +41,14 @@ test("strips ads nested under playerResponse", () => {
   assert.equal(out.playerResponse.videoDetails.videoId, "abc");
 });
 
+test("strips ads from array responses", () => {
+  const { parse } = load();
+  const out = parse(JSON.stringify([{ page: "watch" }, { playerResponse }]));
+  assert.equal(out[1].playerResponse.adPlacements, undefined);
+  assert.equal(out[1].playerResponse.videoDetails.videoId, "abc");
+  assert.equal(out[0].page, "watch");
+});
+
 test("ytInitialPlayerResponse is stripped when YouTube assigns it", () => {
   const { context } = load();
   context.ytInitialPlayerResponse = structuredClone(playerResponse);
