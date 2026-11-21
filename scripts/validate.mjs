@@ -33,14 +33,26 @@ if (manifest) {
   }
 }
 
+const RESOURCE_TYPES = new Set([
+  "main_frame", "sub_frame", "stylesheet", "script", "image", "font", "object",
+  "xmlhttprequest", "ping", "csp_report", "media", "websocket", "webtransport", "webbundle", "other",
+]);
+
 if (rules) {
   const ids = new Set();
+  const filters = new Set();
   for (const rule of rules) {
     if (!Number.isInteger(rule.id) || rule.id < 1) errors.push(`rule has a bad id: ${JSON.stringify(rule.id)}`);
     if (ids.has(rule.id)) errors.push(`duplicate rule id ${rule.id}`);
     ids.add(rule.id);
     if (!rule.action?.type) errors.push(`rule ${rule.id} has no action.type`);
     if (!rule.condition?.urlFilter && !rule.condition?.regexFilter) errors.push(`rule ${rule.id} has no urlFilter`);
+    for (const type of rule.condition?.resourceTypes ?? []) {
+      if (!RESOURCE_TYPES.has(type)) errors.push(`rule ${rule.id} has unknown resource type "${type}"`);
+    }
+    const filter = rule.condition?.urlFilter ?? rule.condition?.regexFilter;
+    if (filters.has(filter)) errors.push(`rule ${rule.id} repeats the filter ${filter}`);
+    filters.add(filter);
   }
 }
 
